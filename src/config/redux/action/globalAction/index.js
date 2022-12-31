@@ -9,3 +9,5 @@ export const replaceGlobal = (params) => (dispatch) => {
 export const resetGlobal = () => (dispatch) => {
   dispatch({type: 'RESET_GLOBAL'});
 };
+
+export * from './service';

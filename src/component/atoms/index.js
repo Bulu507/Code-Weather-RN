@@ -1,3 +1,4 @@
 import Icon from './Icon';
+import Gap from './Gap';
 
-export {Icon};
+export {Icon, Gap};

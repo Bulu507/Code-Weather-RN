@@ -17,6 +17,10 @@ const grey = {
   grey1: '#C2C2C2',
   grey2: '#505050',
   grey3: '#8c8c8c',
+  grey4: '#E9ECEF',
+  grey5: '#E5E5E5',
+  grey6: '#f9f9f9',
+  grey7: '#E7E7E7',
 };
 
 const red = {
