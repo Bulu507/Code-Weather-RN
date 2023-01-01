@@ -11,4 +11,3 @@ export const resetGlobalReducer = () => (dispatch) => {
 };
 
 export * from './service';
-export * from './model';

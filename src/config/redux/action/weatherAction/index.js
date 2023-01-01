@@ -1,4 +1,5 @@
-import {setMain, setWeather, setWind} from './model';
+import {isEmptyData} from '../../../../utils';
+import {MainTemperature, Weather, Wind} from '../../../model';
 
 export const setWeatherReducer = (key, value) => (dispatch) => {
   dispatch({type: 'SET_WEATHER_REDUCER', key: key, value: value});
@@ -13,10 +14,17 @@ export const resetWeatherReducer = () => (dispatch) => {
 };
 
 export const setDataWeather = (data, dataUV) => (dispatch) => {
-  dispatch(setWeather(data?.weather));
-  dispatch(setMain(data?.main, data?.visibility));
-  dispatch(setWind(data?.wind));
-  dispatch(setWeatherReducer('UV', dataUV?.value));
-};
+  const weather = Weather(data?.weather);
+  const main = MainTemperature(data?.main, data?.visibility);
+  const wind = Wind(data?.wind);
+  const uv = isEmptyData(dataUV) ? 0.0 : dataUV?.value;
 
-export * from './model';
+  dispatch(
+    replaceWeatherReducer({
+      weather: weather,
+      main: main,
+      wind: wind,
+      UV: uv,
+    }),
+  );
+};

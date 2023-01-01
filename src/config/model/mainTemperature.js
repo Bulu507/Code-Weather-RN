@@ -1,9 +1,5 @@
 import {setWeatherReducer} from '..';
-import {
-  getMeterToMiles,
-  isEmptyData,
-  pressureHpaToInhg,
-} from '../../../../../utils';
+import {getMeterToMiles, isEmptyData, pressureHpaToInhg} from '../../utils';
 
 const initMain = {
   temp: 0.0,
@@ -19,10 +15,9 @@ const initMain = {
   dp: '',
 };
 
-export const setMain = (data, visibility) => async (dispatch) => {
+export const MainTemperature = (data, visibility) => {
   if (isEmptyData(data)) {
-    dispatch(setWeatherReducer('main', initMain));
-    return;
+    return initMain;
   }
 
   const main = data;
@@ -37,23 +32,35 @@ export const setMain = (data, visibility) => async (dispatch) => {
   const pressure = main?.pressure;
   const formatedPressure = pressureHpaToInhg(pressure).toFixed(2);
   const pressureLabel = `${formatedPressure}inHg`;
-  const visibilityInMiles = getMeterToMiles(visibility);
+  const visibilityObj = Visibility(visibility);
+
+  return {
+    temp: temp,
+    tempLabel: tempLabel,
+    feelsLike: feelsLike,
+    feelsLikeLabel: feelsLikeLabel,
+    humidity: humidity,
+    humidityLabel: humidityLabel,
+    pressure: formatedPressure,
+    labelPressure: pressureLabel,
+    dp: dpLabel,
+    ...visibilityObj,
+  };
+};
+
+const Visibility = (data) => {
+  const initState = {visibility: 0.0, visibilityLabel: ''};
+
+  if (isEmptyData(data)) {
+    return initState;
+  }
+
+  const visibilityInMiles = getMeterToMiles(data);
   const formatedVisibility = visibilityInMiles.toFixed(1);
   const visibilityLabel = `${formatedVisibility}mi`;
 
-  dispatch(
-    setWeatherReducer('main', {
-      temp: temp,
-      tempLabel: tempLabel,
-      feelsLike: feelsLike,
-      feelsLikeLabel: feelsLikeLabel,
-      humidity: humidity,
-      humidityLabel: humidityLabel,
-      pressure: formatedPressure,
-      labelPressure: pressureLabel,
-      visibility: formatedVisibility,
-      visibilityLabel: visibilityLabel,
-      dp: dpLabel,
-    }),
-  );
+  return {
+    visibility: formatedVisibility,
+    visibilityLabel: visibilityLabel,
+  };
 };

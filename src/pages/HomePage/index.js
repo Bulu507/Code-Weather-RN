@@ -4,6 +4,7 @@ import {globalStyle} from '../../utils';
 import Header from './Header';
 import CurrentWeather from './CurrentWeather';
 import CardDetailWeather from './CardDetailWeather';
+import ListForcastHours from './ListForcastHours';
 
 export default function HomePage() {
   return (
@@ -11,6 +12,7 @@ export default function HomePage() {
       <Header />
       <CurrentWeather />
       <CardDetailWeather />
+      <ListForcastHours />
       <Text>HomePage</Text>
     </View>
   );
