@@ -23,7 +23,7 @@ export const getFullDate = (val, format) => {
 };
 
 export const getDay = (val, format) => {
-  const valueFormat = setDefaultData(format, 'MMM');
+  const valueFormat = setDefaultData(format, 'ddd');
 
   const dataDate = new Date(val);
   const formated = date.format(dataDate, valueFormat);

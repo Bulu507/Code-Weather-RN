@@ -10,11 +10,11 @@ export const resetForecastReducer = () => (dispatch) => {
   dispatch({type: 'RESET_FORECAST_REDUCER'});
 };
 
-export const setDetailForcast = (data) => (dispatch) => {
+export const setDetailTabForcast = (idx) => (dispatch) => {
   dispatch(
     replaceForecastReducer({
       showMode: 'tab',
-      detailData: data,
+      tabIndex: idx,
     }),
   );
 };
