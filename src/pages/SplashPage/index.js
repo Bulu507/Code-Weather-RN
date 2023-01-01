@@ -4,22 +4,28 @@ import Config from 'react-native-config';
 import {Gap} from '../../component';
 import {fontStyle, globalStyle} from '../../utils';
 import {ICLogo} from '../../assets';
-import {useDispatch} from 'react-redux';
-import {GetAllData} from '../../config';
+import {useDispatch, useSelector} from 'react-redux';
+import {fetchAllData} from '../../config';
 
 export default function SplashPage({navigation}) {
-  console.log('Config', Config);
   const dispatch = useDispatch();
+  const {loading} = useSelector((x) => x.globalReducer);
+  const coords = {lat: Config.DEFAULT_LAT, lon: Config.DEFAULT_LON};
 
   useEffect(() => {
-    dispatch(GetAllData());
+    dispatch(fetchAllData(coords, navigation));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [navigation]);
 
+  const redux = useSelector((x) => x.globalReducer);
+  console.log('redux', redux);
   return (
     <View style={styles.page}>
       <Gap />
-      <Image source={ICLogo} style={styles.logo} />
+      <View style={styles.centerBox}>
+        <Image source={ICLogo} style={styles.logo} />
+        {loading && <Text style={styles.title}>Fetching the weather...</Text>}
+      </View>
       <Text style={styles.title}>OpenWeather</Text>
     </View>
   );
@@ -32,6 +38,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  logo: {width: 100, height: 100},
+  centerBox: {alignItems: 'center'},
+  logo: {width: 100, height: 75},
   title: {...fontStyle.normal()},
 });

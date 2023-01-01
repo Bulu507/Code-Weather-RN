@@ -1,10 +1,23 @@
-import {GetLocationInfo} from '../../../../service';
+import {setGlobalReducer, setLocationData} from '.';
+import {HOME_PAGE} from '../../../../parameter';
+import {
+  GetCurrentUV,
+  GetCurrentWeather,
+  GetLocationInfo,
+} from '../../../../service';
+import {setDataWeather} from '../weatherAction';
 
-export const GetAllData = () => async (dispatch) => {
+export const fetchAllData = (coords, navigation) => async (dispatch) => {
+  dispatch(setGlobalReducer('loading', true));
   try {
-    const data = await GetLocationInfo();
-    console.log('cek datalocation', data);
+    const location = await GetLocationInfo(coords);
+    dispatch(setLocationData(location));
+    const currentWeather = await GetCurrentWeather(coords);
+    const currentUV = await GetCurrentUV(coords);
+    dispatch(setDataWeather(currentWeather, currentUV));
   } catch (error) {
     console.log('cek error', error);
   }
+  dispatch(setGlobalReducer('loading', false));
+  navigation.navigate(HOME_PAGE);
 };

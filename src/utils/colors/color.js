@@ -21,6 +21,7 @@ const grey = {
   grey5: '#E5E5E5',
   grey6: '#f9f9f9',
   grey7: '#E7E7E7',
+  grey8: '#313133',
 };
 
 const red = {
