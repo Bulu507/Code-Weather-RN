@@ -4,6 +4,7 @@ import {getMeterToMiles, isEmptyData, pressureHpaToInhg} from '../../utils';
 const initMain = {
   temp: 0.0,
   tempLabel: '',
+  tempAvgLabel: '',
   feelsLike: 0.0,
   feelsLikeLabel: '',
   pressure: 0,
@@ -22,9 +23,12 @@ export const MainTemperature = (data, visibility) => {
 
   const main = data;
   const temp = Math.round(main?.temp);
+  const tempMax = Math.round(main?.temp_max);
+  const tempMin = Math.round(main?.temp_min);
   const feelsLike = Math.round(main?.feels_like);
   const tempLabel = `${temp}℉`;
   const feelsLikeLabel = `${feelsLike}℉`;
+  const tempAvgLabel = `${tempMax}/${tempMin}℉`;
   const humidity = main?.humidity;
   const humidityLabel = `${humidity}%`;
   const dp = Math.round(main?.temp_min);
@@ -37,6 +41,7 @@ export const MainTemperature = (data, visibility) => {
   return {
     temp: temp,
     tempLabel: tempLabel,
+    tempAvgLabel: tempAvgLabel,
     feelsLike: feelsLike,
     feelsLikeLabel: feelsLikeLabel,
     humidity: humidity,

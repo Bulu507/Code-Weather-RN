@@ -9,3 +9,12 @@ export const replaceForecastReducer = (params) => (dispatch) => {
 export const resetForecastReducer = () => (dispatch) => {
   dispatch({type: 'RESET_FORECAST_REDUCER'});
 };
+
+export const setDetailForcast = (data) => (dispatch) => {
+  dispatch(
+    replaceForecastReducer({
+      showMode: 'tab',
+      detailData: data,
+    }),
+  );
+};

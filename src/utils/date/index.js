@@ -12,3 +12,30 @@ export const dateToAMPM = (val, type) => {
 
   return format;
 };
+
+export const getFullDate = (val, format) => {
+  const valueFormat = setDefaultData(format, 'ddd MMM DD');
+
+  const dataDate = new Date(val);
+  const formated = date.format(dataDate, valueFormat);
+
+  return formated;
+};
+
+export const getDay = (val, format) => {
+  const valueFormat = setDefaultData(format, 'MMM');
+
+  const dataDate = new Date(val);
+  const formated = date.format(dataDate, valueFormat);
+
+  return formated;
+};
+
+export const getDate = (val, format) => {
+  const valueFormat = setDefaultData(format, 'DD');
+
+  const dataDate = new Date(val);
+  const formated = date.format(dataDate, valueFormat);
+
+  return formated;
+};

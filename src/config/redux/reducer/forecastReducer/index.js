@@ -1,6 +1,8 @@
 const initialState = {
   listHours: {},
   listDaily: {},
+  showMode: 'list',
+  detailData: {},
 };
 
 export const forecastReducer = (state = initialState, action) => {
