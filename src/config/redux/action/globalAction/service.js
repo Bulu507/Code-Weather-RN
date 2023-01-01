@@ -36,5 +36,5 @@ export const fetchAllData = (coords, navigation) => async (dispatch) => {
     console.log('cek error', error);
   }
   dispatch(setGlobalReducer('loading', false));
-  navigation.navigate(HOME_PAGE);
+  navigation.replace(HOME_PAGE);
 };

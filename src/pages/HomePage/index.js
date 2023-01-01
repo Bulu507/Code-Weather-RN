@@ -7,10 +7,10 @@ import CardDetailWeather from './CardDetailWeather';
 import ListForcastHours from './ListForcastHours';
 import ForcastDaily from './ForcastDaily';
 
-export default function HomePage() {
+export default function HomePage({navigation}) {
   return (
     <View style={globalStyle.page}>
-      <Header />
+      <Header navigation={navigation} />
       <ScrollView contentContainerStyle={styles.scrollView}>
         <CurrentWeather />
         <CardDetailWeather />

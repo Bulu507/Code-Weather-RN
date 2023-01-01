@@ -3,8 +3,10 @@ import React from 'react';
 import {Gap, Icon} from '../../../component';
 import {colors, fontStyle, warpingText} from '../../../utils';
 import {useSelector} from 'react-redux';
+import {CONFIG_PAGE} from '../../../parameter';
 
 export default function Header(props) {
+  const {navigation} = props;
   const {location} = useSelector((x) => x.globalReducer);
   const label = warpingText(`${location?.name}, ${location.state}`);
 
@@ -20,7 +22,12 @@ export default function Header(props) {
         </View>
       </TouchableOpacity>
       <Gap width={10} />
-      <Icon name="options-outline" type="ionicon" color={colors.white} />
+      <Icon
+        name="options-outline"
+        type="ionicon"
+        color={colors.white}
+        onPress={() => navigation?.navigate(CONFIG_PAGE)}
+      />
     </View>
   );
 }
